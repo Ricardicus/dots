@@ -104,3 +104,9 @@ source $ZSH/oh-my-zsh.sh
 
 # Strip out the /mnt parts
 export PATH=$(echo "$PATH" | sed -e 's/:\/mnt[^:]*//g') # strip out problematic Windows %PATH%
+
+# Personal message
+display_msg=$(< ~/.cooltext.txt)
+echo "$display_msg"
+
+
