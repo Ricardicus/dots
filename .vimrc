@@ -46,3 +46,7 @@ autocmd VimEnter * NERDTree
 " Make sure NERDTree shows hidden files
 let NERDTreeShowHidden=1
 
+" backspace as per usual
+set backspace=indent,eol,start
+
+
