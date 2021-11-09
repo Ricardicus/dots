@@ -49,4 +49,7 @@ let NERDTreeShowHidden=1
 " backspace as per usual
 set backspace=indent,eol,start
 
+" mouse
+set mouse=a
+
 
