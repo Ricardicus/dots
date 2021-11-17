@@ -34,6 +34,9 @@ Plug 'junegunn/fzf.vim'
 " Unmanaged plugin (manually installed and updated)
 Plug '~/my-prototype-plugin'
 
+" Silver searcher
+Plug 'rking/ag.vim'
+
 " Nerdtree
 Plug 'preservim/NERDTree'
 
