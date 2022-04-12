@@ -68,3 +68,5 @@ endfunction
 :set number relativenumber
 :set nu rnu
 
+" Rust plug
+Plug 'rust-lang/rust.vim'
