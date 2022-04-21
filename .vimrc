@@ -70,3 +70,7 @@ endfunction
 
 " Rust plug
 Plug 'rust-lang/rust.vim'
+
+" Ctags
+Plug 'webastien/vim-ctags'
+
