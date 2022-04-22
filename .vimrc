@@ -36,9 +36,6 @@ Plug '~/my-prototype-plugin'
 " Nerdtree
 Plug 'preservim/NERDTree'
 
-" Initialize plugin system
-call plug#end()
-
 " Start NERDTree and leave the cursor in it.
 autocmd VimEnter * NERDTree
 
@@ -74,3 +71,11 @@ Plug 'rust-lang/rust.vim'
 " Ctags
 Plug 'webastien/vim-ctags'
 
+" Taglist
+Plug 'yegappan/taglist'
+
+" Cscope
+Plug 'simplyzhao/cscope_maps.vim'
+
+" Initialize plugin system
+call plug#end()
