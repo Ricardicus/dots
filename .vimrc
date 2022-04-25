@@ -77,5 +77,8 @@ Plug 'yegappan/taglist'
 " Cscope
 Plug 'simplyzhao/cscope_maps.vim'
 
+" Tagbar
+Plug 'preservim/tagbar'
+
 " Initialize plugin system
 call plug#end()
