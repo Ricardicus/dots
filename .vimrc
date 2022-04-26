@@ -35,6 +35,7 @@ Plug '~/my-prototype-plugin'
 
 " Nerdtree
 Plug 'preservim/NERDTree'
+let NERDTreeShowHidden=1
 
 " Start NERDTree and leave the cursor in it.
 autocmd VimEnter * NERDTree
