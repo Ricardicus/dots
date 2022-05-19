@@ -35,7 +35,6 @@ Plug '~/my-prototype-plugin'
 
 " Nerdtree
 Plug 'preservim/NERDTree'
-let NERDTreeShowHidden=1
 
 " Start NERDTree and leave the cursor in it.
 autocmd VimEnter * NERDTree
@@ -81,5 +80,26 @@ Plug 'simplyzhao/cscope_maps.vim'
 " Tagbar
 Plug 'preservim/tagbar'
 
+" Neovim 
+if has('nvim')
+	Plug 'neovim/nvim-lspconfig'
+   Plug 'hrsh7th/cmp-nvim-lsp', { 'branch': 'main' }
+   Plug 'hrsh7th/cmp-buffer', { 'branch': 'main' }
+   Plug 'hrsh7th/cmp-path', { 'branch': 'main' }
+   Plug 'hrsh7th/cmp-cmdline', { 'branch': 'main' }
+   Plug 'hrsh7th/nvim-cmp', { 'branch': 'main' }
+   Plug 'onsails/lspkind-nvim'
+   Plug 'quangnguyen30192/cmp-nvim-ultisnips', { 'branch': 'main' }
+endif
+
+let NERDTreeShowHidden=1
+
 " Initialize plugin system
 call plug#end()
+
+" neovim specific
+if has('nvim')
+  lua require('nvim-lspconfig')
+  lua require('nvim-cmp')
+endif
+
