@@ -34,11 +34,11 @@ end
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
 
-if vim.fn.executable('/lib/llvm-10/bin/clangd') > 0 then
+if vim.fn.executable('clangd') > 0 then
 require'lspconfig'.clangd.setup{
 capabilities = capabilities,
 cmd = {
-"/lib/llvm-10/bin/clangd",
+"clangd",
 "--background-index=false",
 "--clang-tidy=true",
 "--completion-style=detailed",
