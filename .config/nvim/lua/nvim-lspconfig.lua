@@ -34,6 +34,7 @@ end
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
 
+-- C/C++
 if vim.fn.executable('clangd') > 0 then
 require'lspconfig'.clangd.setup{
 capabilities = capabilities,
@@ -46,8 +47,12 @@ cmd = {
 },
 on_attach = on_attach
 }
-
 end
 
+-- Python
+-- npm i -g pyright
+if vim.fn.executable('pyright') > 0 then
+require'lspconfig'.pyright.setup{}
+end
 
 
