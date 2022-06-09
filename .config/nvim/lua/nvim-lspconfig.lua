@@ -55,4 +55,10 @@ if vim.fn.executable('pyright') > 0 then
 require'lspconfig'.pyright.setup{}
 end
 
-
+-- Javascript/Typescript
+-- npm install -g typescript-language-server typescript
+if vim.fn.executable('typescript-language-server') > 0 then
+require'lspconfig'.tsserver.setup{
+  on_attach = on_attach
+}
+end
