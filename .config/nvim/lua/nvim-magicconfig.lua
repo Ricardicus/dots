@@ -1,0 +1,3 @@
+require'nvim-magic'.setup{
+}
+

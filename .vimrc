@@ -36,6 +36,9 @@ Plug '~/my-prototype-plugin'
 " Nerdtree
 Plug 'preservim/NERDTree'
 
+" ric-script
+Plug 'ricardicus/ric-script.vim'
+
 " Start NERDTree and leave the cursor in it.
 autocmd VimEnter * NERDTree
 
@@ -53,8 +56,8 @@ function! UseTabs()
 endfunction
 
 function! UseSpaces() 
-	set tabstop=2
-	set shiftwidth=2
+	set tabstop=3
+	set shiftwidth=3
 	set expandtab
 	set softtabstop=0
 	set autoindent
@@ -90,6 +93,10 @@ if has('nvim')
    Plug 'hrsh7th/nvim-cmp', { 'branch': 'main' }
    Plug 'onsails/lspkind-nvim'
    Plug 'quangnguyen30192/cmp-nvim-ultisnips', { 'branch': 'main' }
+
+   Plug 'nvim-lua/plenary.nvim'
+   Plug 'MunifTanjim/nui.nvim'
+   Plug 'ricardicus/nvim-magic'
 endif
 
 let NERDTreeShowHidden=1
@@ -97,9 +104,15 @@ let NERDTreeShowHidden=1
 " Initialize plugin system
 call plug#end()
 
-" neovim specific
+" Epiroc work
+call UseSpaces()
+
 if has('nvim')
   lua require('nvim-lspconfig')
   lua require('nvim-cmp')
+  lua require('nvim-magicconfig')
 endif
+
+" ctags
+set tags=./tags,tags;$HOME
 
