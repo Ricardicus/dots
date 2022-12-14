@@ -26,7 +26,7 @@ local on_attach = function(client, bufnr)
   vim.api.nvim_buf_set_keymap(bufnr, 'n', '<space>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
   vim.api.nvim_buf_set_keymap(bufnr, 'n', '<space>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
   vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
-  vim.api.nvim_buf_set_keymap(bufnr, 'n', '<space>f', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
+  vim.api.nvim_buf_set_keymap(bufnr, 'n', '<space>f', '<cmd>lua vim.lsp.buf.format()<CR>', opts)
 end
 
 -- Use a loop to conveniently call 'setup' on multiple servers and
@@ -51,9 +51,45 @@ end
 
 -- Python
 -- npm i -g pyright
-if vim.fn.executable('pyright') > 0 then
-require'lspconfig'.pyright.setup{}
+if vim.fn.executable("pylsp") > 0 then
+   require("lspconfig").pylsp.setup({
+      capabilities = capabilities,
+      settings = {
+         pylsp = {
+            configurationSources = { "flake8" },
+            plugins = {
+               autopep8 = {
+                  enabled = false,
+               },
+               black = {
+                  enabled = true,
+               },
+               flake8 = {
+                  enabled = true,
+                  ignore = "E501",
+               },
+               pycodestyle = {
+                  enabled = false,
+                  maxLineLength = 120,
+               },
+               pyflakes = {
+                  enabled = false,
+               },
+               pyls_mypy = {
+                  enabled = true,
+               },
+               pyls_isort = {
+                  enabled = true,
+               },
+               yapf = {
+                  enabled = false,
+               },
+            },
+         },
+      },
+   })
 end
+
 
 -- Javascript/Typescript
 -- npm install -g typescript-language-server typescript

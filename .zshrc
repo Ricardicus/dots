@@ -2,7 +2,7 @@
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH="/home/riha/.oh-my-zsh"
+export ZSH="/home/ubuntu/.oh-my-zsh"
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -72,6 +72,7 @@ ZSH_THEME="robbyrussell"
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(git)
 
+fpath+=${ZSH_CUSTOM:-${ZSH:-~/.oh-my-zsh}/custom}/plugins/zsh-completions/src
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
@@ -104,9 +105,42 @@ source $ZSH/oh-my-zsh.sh
 
 # Strip out the /mnt parts
 export PATH=$(echo "$PATH" | sed -e 's/:\/mnt[^:]*//g') # strip out problematic Windows %PATH%
+export PATH=$PATH:/usr/local/go/bin:/home/ubuntu/go/bin/
 
-# Personal message
-display_msg=$(< ~/.cooltext.txt)
-echo "$display_msg"
+# please command (https://github.com/ostwilkens/please-zsh)
+please(){
+    api_key="$OPENAI_API_KEY"
 
+    # combine all user_prompt into one string
+    user_prompt=""
+    for arg in "$@"; do
+        user_prompt="$user_prompt $arg"
+    done
 
+    # remove leading space
+    user_prompt=${user_prompt:1}
+
+    # build request body
+    full_prompt="This is the bash command used to $user_prompt: "
+    body='{"model": "text-davinci-002", "prompt": "'$full_prompt'", "temperature": 0.7, "max_tokens": 128}'
+
+    # fetch and format response
+    result=$(curl https://api.openai.com/v1/completions -s -H "Content-Type: application/json" -H "Authorization: Bearer $api_key" -d "$body" | jq --raw-output '.choices[0].text' | tr '\n' ' ')
+
+    # remove leading whitespace characters
+    result="${result#"${result%%[![:space:]]*}"}"
+
+    # remove trailing whitespace characters
+    result="${result%"${result##*[![:space:]]}"}"
+
+    # send to input buffer
+    print -z $result
+}
+
+function py-lsp-install {
+    if [ -z "${VIRTUAL_ENV}" ]; then
+        echo "Not in a virtual environment!"
+        return 1
+    fi
+    python -m pip install 'python-lsp-server[all]' pylsp-mypy pyls-isort python-lsp-black pylsp-rope --upgrade
+}
