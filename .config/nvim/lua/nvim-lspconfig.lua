@@ -54,6 +54,7 @@ end
 if vim.fn.executable("pylsp") > 0 then
    require("lspconfig").pylsp.setup({
       capabilities = capabilities,
+      on_attach = on_attach,
       settings = {
          pylsp = {
             configurationSources = { "flake8" },
