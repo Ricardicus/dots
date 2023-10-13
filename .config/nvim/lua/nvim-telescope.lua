@@ -24,5 +24,3 @@ require("telescope").setup({
       },
   }
 })
-
-print("hello")
