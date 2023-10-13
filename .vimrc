@@ -49,6 +49,13 @@ Plug 'simrat39/rust-tools.nvim'
 " Start NERDTree and leave the cursor in it.
 autocmd VimEnter * NERDTree
 
+
+" Telescope
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.4' }
+Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'branch': 'main', 'do': 'make' }
+
+
 " backspace as per usual
 set backspace=indent,eol,start
 
@@ -63,13 +70,15 @@ function! UseTabs()
 endfunction
 
 function! UseSpaces() 
-	set tabstop=3
-	set shiftwidth=3
+	set tabstop=2
+	set shiftwidth=2
 	set expandtab
 	set softtabstop=0
 	set autoindent
 	set smarttab
 endfunction
+
+hi MyHighlightGroup guibg=black guifg=white
 
 " turn hybrid line numbers on
 :set number relativenumber
@@ -117,6 +126,7 @@ call UseSpaces()
 if has('nvim')
   lua require('nvim-lspconfig')
   lua require('nvim-cmp')
+  lua require('nvim-telescope')
   lua require('nvim-magicconfig')
 endif
 
