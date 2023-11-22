@@ -1,0 +1,42 @@
+[user]
+	name = Rickard Hallerbäck
+	email = rickard.hallerback@gmail.com
+
+[alias]
+   br = branch -vv
+   ci = commit
+   co = checkout
+   cp = cherry-pick
+   d  = diff
+   ds = diff --staged
+   rb = rebase
+   sh = show
+   sm = submodule
+   smu = submodule update --recursive --init
+   st = status
+   ll = log --graph --pretty=format:'%C(yellow)%h%Creset -%C(red)%d%Creset %s %Cgreen(%cr) %C(blue)[%an]%Creset' --branches --remotes --date=relative
+   lb = log --graph --pretty=format:'%C(yellow)%h%Creset -%C(red)%d%Creset %s %Cgreen(%cr) %C(blue)[%an]%Creset' --date=relative
+   lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
+   ca = submodule foreach git clean -ffdq # Cleans out all files that isn't under version control.
+   find = log --all --pretty=format:'%C(yellow)%h%Creset -%C(red)%d%Creset %s %Cgreen(%cr) %C(blue)[%an]%Creset' --branches --name-status --grep
+   rah = !git submodule foreach git clean -ffdq && git submodule foreach git reset --hard && git submodule update --recursive --init
+
+[log]
+  follow = true
+
+[pull]
+  ff = only
+  rebase = true
+
+[lfs]
+        contenttype = false
+
+[filter "lfs"]
+        smudge = git-lfs smudge -- %f
+        process = git-lfs filter-process
+        required = true
+        clean = git-lfs clean -- %f
+[credential]
+	helper = store
+[core]
+	editor = nvim
