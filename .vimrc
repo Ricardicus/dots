@@ -46,6 +46,9 @@ Plug 'pangloss/vim-javascript'
 " Rust
 Plug 'simrat39/rust-tools.nvim'
 
+" Zig
+Plug 'ziglang/zig.vim'
+
 " Start NERDTree and leave the cursor in it.
 autocmd VimEnter * NERDTree
 
